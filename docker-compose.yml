@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  api:
+    container_name: challenge_zoox_api
+    image: node:12
+    networks:
+      - mongodb
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install & npm run dev"
+    depends_on:
+      - mongo
+    working_dir: /app
+    volumes: ./API:/app
+    env_file:
+      - ./API/.env
+  
+  mongo:
+    container_name: challenge_zoox_mongo
+    image: mongo
+    networks:
+      - mongodb
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "27017:27017"
+    env_file:
+      - ./API/.env
+
+networks:
+  mongodb:
+
+volumes:
+  mongodb:
