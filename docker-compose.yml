@@ -7,8 +7,10 @@ services:
     ports:
       - "3000:3000"
     command: sh -c "npm install && npm run start:dev"
+    networks:
+      - db
     depends_on:
-      - mongo
+      - mongodb
       - mysql
     working_dir: /app
     volumes:
@@ -16,7 +18,7 @@ services:
     env_file:
       - ./API/.env
   
-  mongo:
+  mongodb:
     container_name: challenge_zoox_mongo
     image: mongo
     networks:
