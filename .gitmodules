@@ -1,6 +1,6 @@
 [submodule "API"]
 	path = API
 	url = https://github.com/wricke/challenge-zoox-api
-[submodule "challenge-zoox-webapp"]
-	path = challenge-zoox-webapp
+[submodule "webapp"]
+	path = webapp
 	url = https://github.com/wricke/challenge-zoox-webapp
