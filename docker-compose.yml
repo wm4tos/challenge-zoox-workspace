@@ -16,7 +16,23 @@ services:
       - ./API:/app
     env_file:
       - ./API/.env
-  
+
+  webapp:
+    container_name: challenge_zoox_webapp
+    image: node:12
+    ports:
+      - "80:80"
+    command: sh -c "npm install && npm run start:dev"
+    depends_on:
+      - mongodb
+      - api
+    working_dir: /app
+    volumes:
+      - ./webapp:/app
+    environment:
+      - PORT=80
+      - IS_DOCKER=true
+
   mongodb:
     container_name: challenge_zoox_mongo
     image: mongo
